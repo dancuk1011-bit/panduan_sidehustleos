@@ -1,0 +1,1328 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Side Hustle OS — Panduan Interaktif</title>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #F7F5F0;
+    --surface: #FFFFFF;
+    --border: #E4E0D8;
+    --text: #1C1C1A;
+    --muted: #7A7670;
+    --teal: #2A9D8F;
+    --teal-light: #E8F5F3;
+    --teal-dark: #1A7A6E;
+    --amber: #E9A84C;
+    --amber-light: #FDF3E3;
+    --coral: #E76F51;
+    --coral-light: #FDF0EC;
+    --green: #52B788;
+    --green-light: #EBF6F0;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Sora', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+  }
+
+  /* HERO */
+  .hero {
+    background: var(--text);
+    color: #F7F5F0;
+    padding: 56px 32px 64px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    width: 400px; height: 400px;
+    border-radius: 50%;
+    background: var(--teal);
+    opacity: 0.08;
+    top: -100px; right: -100px;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    width: 200px; height: 200px;
+    border-radius: 50%;
+    background: var(--amber);
+    opacity: 0.1;
+    bottom: -60px; left: 20%;
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(42,157,143,0.2);
+    border: 1px solid rgba(42,157,143,0.3);
+    color: #5DCABB;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+  }
+
+  .hero h1 {
+    font-family: 'Lora', serif;
+    font-size: clamp(28px, 7vw, 48px);
+    font-weight: 600;
+    line-height: 1.15;
+    margin-bottom: 14px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    color: #5DCABB;
+  }
+
+  .hero p {
+    font-size: 14px;
+    font-weight: 300;
+    color: #A8A49C;
+    line-height: 1.7;
+    max-width: 380px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-stats {
+    display: flex;
+    gap: 24px;
+    margin-top: 32px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-stat span:first-child {
+    display: block;
+    font-family: 'Lora', serif;
+    font-size: 24px;
+    font-weight: 600;
+    color: #5DCABB;
+  }
+
+  .hero-stat span:last-child {
+    font-size: 11px;
+    color: #7A7670;
+    letter-spacing: 0.5px;
+  }
+
+  /* PROGRESS BAR */
+  .progress-section {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 16px 24px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  .progress-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+  }
+
+  .progress-top span {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--muted);
+    letter-spacing: 0.5px;
+  }
+
+  .progress-top strong {
+    font-size: 13px;
+    color: var(--teal);
+  }
+
+  .progress-bar {
+    height: 4px;
+    background: var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--teal), var(--green));
+    border-radius: 10px;
+    transition: width 0.6s cubic-bezier(0.4,0,0.2,1);
+    width: 0%;
+  }
+
+  /* MAIN */
+  .main {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 0 20px 80px;
+  }
+
+  /* STEP NAVIGATOR */
+  .steps-nav {
+    display: flex;
+    gap: 8px;
+    padding: 20px 0 4px;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .steps-nav::-webkit-scrollbar { display: none; }
+
+  .step-pill {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 7px 14px;
+    border-radius: 20px;
+    border: 1.5px solid var(--border);
+    background: var(--surface);
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--muted);
+    white-space: nowrap;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: 'Sora', sans-serif;
+  }
+
+  .step-pill.active {
+    background: var(--teal);
+    border-color: var(--teal);
+    color: white;
+  }
+
+  .step-pill.done {
+    background: var(--teal-light);
+    border-color: var(--teal);
+    color: var(--teal-dark);
+  }
+
+  .step-pill .dot {
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: currentColor;
+    opacity: 0.5;
+  }
+
+  .step-pill.done .dot {
+    opacity: 0;
+  }
+
+  .step-pill.done::before {
+    content: '✓';
+    font-size: 11px;
+  }
+
+  /* STEP CONTENT */
+  .step-content { display: none; }
+  .step-content.active {
+    display: block;
+    animation: fadeIn 0.3s ease;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* SECTION HEADER */
+  .section-head {
+    padding: 28px 0 20px;
+  }
+
+  .section-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--teal);
+    margin-bottom: 10px;
+  }
+
+  .section-head h2 {
+    font-family: 'Lora', serif;
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 1.3;
+    margin-bottom: 8px;
+  }
+
+  .section-head p {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.7;
+    font-weight: 300;
+  }
+
+  /* CARDS */
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 20px;
+    margin-bottom: 12px;
+    transition: box-shadow 0.2s;
+  }
+
+  .card:hover {
+    box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+  }
+
+  .card-head {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+  }
+
+  .card-icon {
+    width: 40px; height: 40px;
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+
+  .card-icon.teal { background: var(--teal-light); }
+  .card-icon.amber { background: var(--amber-light); }
+  .card-icon.coral { background: var(--coral-light); }
+  .card-icon.green { background: var(--green-light); }
+
+  .card-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 2px;
+  }
+
+  .card-sub {
+    font-size: 12px;
+    color: var(--muted);
+    font-weight: 300;
+  }
+
+  .card-body {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.7;
+    font-weight: 300;
+  }
+
+  /* STEPS LIST */
+  .steps-list {
+    list-style: none;
+    counter-reset: step;
+  }
+
+  .steps-list li {
+    display: flex;
+    gap: 14px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--border);
+    counter-increment: step;
+  }
+
+  .steps-list li:last-child { border-bottom: none; }
+
+  .step-num {
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    background: var(--teal-light);
+    color: var(--teal-dark);
+    font-size: 12px;
+    font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .step-text strong {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 3px;
+  }
+
+  .step-text span {
+    font-size: 12px;
+    color: var(--muted);
+    font-weight: 300;
+    line-height: 1.6;
+  }
+
+  /* CHECKLIST */
+  .checklist-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border);
+    cursor: pointer;
+    user-select: none;
+    transition: opacity 0.2s;
+  }
+
+  .checklist-item:last-child { border-bottom: none; }
+
+  .check-box {
+    width: 20px; height: 20px;
+    border: 2px solid var(--border);
+    border-radius: 6px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    margin-top: 1px;
+    transition: all 0.2s;
+    background: white;
+  }
+
+  .check-box.checked {
+    background: var(--teal);
+    border-color: var(--teal);
+    color: white;
+    font-size: 11px;
+  }
+
+  .check-label strong {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 2px;
+    transition: opacity 0.2s;
+  }
+
+  .check-label span {
+    font-size: 12px;
+    color: var(--muted);
+    font-weight: 300;
+  }
+
+  .checklist-item.done .check-label strong {
+    opacity: 0.4;
+    text-decoration: line-through;
+  }
+
+  /* TIP BOX */
+  .tip {
+    background: var(--teal-light);
+    border: 1px solid rgba(42,157,143,0.2);
+    border-radius: 10px;
+    padding: 14px 16px;
+    margin: 14px 0;
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+  }
+
+  .tip-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+
+  .tip p {
+    font-size: 12px;
+    color: var(--teal-dark);
+    line-height: 1.6;
+    font-weight: 400;
+  }
+
+  .tip p strong { font-weight: 700; }
+
+  /* WARNING BOX */
+  .warn {
+    background: var(--amber-light);
+    border: 1px solid rgba(233,168,76,0.3);
+    border-radius: 10px;
+    padding: 14px 16px;
+    margin: 14px 0;
+    display: flex;
+    gap: 10px;
+  }
+
+  .warn p {
+    font-size: 12px;
+    color: #8B5E15;
+    line-height: 1.6;
+  }
+
+  /* TIMELINE */
+  .timeline { padding: 8px 0; }
+
+  .timeline-item {
+    display: flex;
+    gap: 14px;
+    padding-bottom: 20px;
+    position: relative;
+  }
+
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: 14px;
+    top: 28px;
+    bottom: 0;
+    width: 1.5px;
+    background: var(--border);
+  }
+
+  .timeline-item:last-child::before { display: none; }
+
+  .timeline-dot {
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px;
+    font-weight: 700;
+    flex-shrink: 0;
+    position: relative;
+    z-index: 1;
+  }
+
+  .timeline-dot.teal { background: var(--teal); color: white; }
+  .timeline-dot.amber { background: var(--amber); color: white; }
+  .timeline-dot.coral { background: var(--coral); color: white; }
+  .timeline-dot.green { background: var(--green); color: white; }
+
+  .timeline-body strong {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 4px;
+    margin-top: 4px;
+  }
+
+  .timeline-body p {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.6;
+    font-weight: 300;
+  }
+
+  .timeline-week {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  /* NAV BUTTONS */
+  .nav-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 28px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+  }
+
+  .btn {
+    flex: 1;
+    padding: 13px;
+    border-radius: 10px;
+    font-size: 13px;
+    font-weight: 600;
+    font-family: 'Sora', sans-serif;
+    cursor: pointer;
+    border: 1.5px solid var(--border);
+    transition: all 0.2s;
+    background: var(--surface);
+    color: var(--muted);
+  }
+
+  .btn:hover { border-color: var(--teal); color: var(--teal); }
+
+  .btn.primary {
+    background: var(--teal);
+    border-color: var(--teal);
+    color: white;
+  }
+
+  .btn.primary:hover {
+    background: var(--teal-dark);
+    border-color: var(--teal-dark);
+    color: white;
+  }
+
+  /* BADGE */
+  .badge {
+    display: inline-block;
+    padding: 3px 9px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 600;
+  }
+
+  .badge.teal { background: var(--teal-light); color: var(--teal-dark); }
+  .badge.amber { background: var(--amber-light); color: #8B5E15; }
+  .badge.coral { background: var(--coral-light); color: #9B3D28; }
+  .badge.green { background: var(--green-light); color: #1E6B45; }
+
+  /* COMPLETION SCREEN */
+  .completion {
+    text-align: center;
+    padding: 48px 20px;
+  }
+
+  .completion-icon {
+    width: 80px; height: 80px;
+    border-radius: 50%;
+    background: var(--teal-light);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 36px;
+    margin: 0 auto 24px;
+  }
+
+  .completion h2 {
+    font-family: 'Lora', serif;
+    font-size: 26px;
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+
+  .completion p {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.7;
+    margin-bottom: 28px;
+  }
+
+  .reward-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 24px;
+    text-align: left;
+  }
+
+  .reward-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px;
+  }
+
+  .reward-card .emoji { font-size: 24px; margin-bottom: 8px; }
+
+  .reward-card strong {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+
+  .reward-card span {
+    font-size: 12px;
+    color: var(--muted);
+    font-weight: 300;
+  }
+
+  /* DIVIDER */
+  .divider {
+    height: 1px;
+    background: var(--border);
+    margin: 20px 0;
+  }
+
+  /* ACCORDION */
+  .accordion-item {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    margin-bottom: 8px;
+    overflow: hidden;
+  }
+
+  .accordion-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 16px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text);
+    user-select: none;
+  }
+
+  .accordion-arrow {
+    font-size: 12px;
+    color: var(--muted);
+    transition: transform 0.2s;
+  }
+
+  .accordion-body {
+    display: none;
+    padding: 0 16px 14px;
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.7;
+    font-weight: 300;
+  }
+
+  .accordion-item.open .accordion-body { display: block; }
+  .accordion-item.open .accordion-arrow { transform: rotate(180deg); }
+
+  /* STREAK */
+  .streak-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 5px;
+    margin: 12px 0;
+  }
+
+  .streak-day {
+    aspect-ratio: 1;
+    border-radius: 5px;
+    background: var(--border);
+    transition: background 0.2s;
+    cursor: pointer;
+  }
+
+  .streak-day.done { background: var(--teal); }
+  .streak-day.today { background: var(--amber); }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-badge">✦ Panduan Interaktif</div>
+  <h1>Side Hustle <em>OS</em><br>Panduan Lengkap</h1>
+  <p>Ikuti panduan ini langkah demi langkah. Dari nol sampai penghasilan pertamamu — sistematis, terstruktur, dan nggak bikin bingung.</p>
+  <div class="hero-stats">
+    <div class="hero-stat">
+      <span>6</span>
+      <span>Modul</span>
+    </div>
+    <div class="hero-stat">
+      <span>12</span>
+      <span>Minggu</span>
+    </div>
+    <div class="hero-stat">
+      <span>∞</span>
+      <span>Potensi</span>
+    </div>
+  </div>
+</div>
+
+<!-- PROGRESS -->
+<div class="progress-section">
+  <div class="progress-top">
+    <span>PROGRES PANDUAN</span>
+    <strong id="progress-label">0 / 6 selesai</strong>
+  </div>
+  <div class="progress-bar">
+    <div class="progress-fill" id="progress-fill"></div>
+  </div>
+</div>
+
+<!-- MAIN -->
+<div class="main">
+
+  <!-- NAV PILLS -->
+  <div class="steps-nav" id="steps-nav">
+    <button class="step-pill active" onclick="goStep(0)" id="pill-0"><span class="dot"></span>Mulai</button>
+    <button class="step-pill" onclick="goStep(1)" id="pill-1"><span class="dot"></span>Skill Mapper</button>
+    <button class="step-pill" onclick="goStep(2)" id="pill-2"><span class="dot"></span>Roadmap</button>
+    <button class="step-pill" onclick="goStep(3)" id="pill-3"><span class="dot"></span>Client Pipeline</button>
+    <button class="step-pill" onclick="goStep(4)" id="pill-4"><span class="dot"></span>Income Tracker</button>
+    <button class="step-pill" onclick="goStep(5)" id="pill-5"><span class="dot"></span>Review Mingguan</button>
+    <button class="step-pill" onclick="goStep(6)" id="pill-6"><span class="dot"></span>Selesai 🎉</button>
+  </div>
+
+  <!-- STEP 0: MULAI -->
+  <div class="step-content active" id="step-0">
+    <div class="section-head">
+      <div class="section-tag">🚀 Selamat Datang</div>
+      <h2>Sebelum kamu mulai...</h2>
+      <p>Baca ini dulu. 3 menit yang akan mengubah cara kamu menjalankan side hustle.</p>
+    </div>
+
+    <div class="card">
+      <div class="card-head">
+        <div class="card-icon teal">🧠</div>
+        <div>
+          <div class="card-title">Kenapa Side Hustle OS?</div>
+          <div class="card-sub">Bukan sekadar template biasa</div>
+        </div>
+      </div>
+      <div class="card-body">
+        Kebanyakan orang gagal bukan karena kurang ilmu — tapi karena tidak punya sistem. Side Hustle OS adalah sistem operasi hidupmu untuk mengubah skill yang sudah kamu punya menjadi penghasilan nyata.
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-head">
+        <div class="card-icon amber">⚠️</div>
+        <div>
+          <div class="card-title">Aturan main yang wajib diikuti</div>
+          <div class="card-sub">Penting sebelum mulai</div>
+        </div>
+      </div>
+      <ul class="steps-list">
+        <li>
+          <div class="step-num">1</div>
+          <div class="step-text">
+            <strong>Ikuti urutan modulnya</strong>
+            <span>Jangan loncat-loncat. Setiap modul membangun fondasi untuk modul berikutnya.</span>
+          </div>
+        </li>
+        <li>
+          <div class="step-num">2</div>
+          <div class="step-text">
+            <strong>Isi semua field dengan jujur</strong>
+            <span>Jangan diisi asal-asalan. Kualitas output = kualitas input yang kamu masukkan.</span>
+          </div>
+        </li>
+        <li>
+          <div class="step-num">3</div>
+          <div class="step-text">
+            <strong>Review setiap Minggu malam</strong>
+            <span>15 menit per minggu untuk review adalah kunci konsistensi jangka panjang.</span>
+          </div>
+        </li>
+        <li>
+          <div class="step-num">4</div>
+          <div class="step-text">
+            <strong>Fokus pada 1 skill dulu</strong>
+            <span>Godaan terbesar adalah mencoba terlalu banyak sekaligus. Jangan jatuh ke jebakan ini.</span>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="tip">
+      <div class="tip-icon">💡</div>
+      <p><strong>Tips:</strong> Siapkan 30 menit khusus untuk setup awal. Matikan notifikasi HP, buat kopi, dan fokuslah. Setup yang baik di awal akan menghemat berjam-jam di kemudian hari.</p>
+    </div>
+
+    <div class="nav-buttons">
+      <button class="btn primary" onclick="nextStep()">Mulai Modul Pertama →</button>
+    </div>
+  </div>
+
+  <!-- STEP 1: SKILL MAPPER -->
+  <div class="step-content" id="step-1">
+    <div class="section-head">
+      <div class="section-tag">📍 Modul 1 · Skill Mapper</div>
+      <h2>Temukan skill<br>yang bisa dijual</h2>
+      <p>Sebelum cari klien, kamu harus tahu dulu apa yang bisa kamu tawarkan ke pasar.</p>
+    </div>
+
+    <div class="card">
+      <div class="card-head">
+        <div class="card-icon teal">🗺️</div>
+        <div>
+          <div class="card-title">Cara pakai Skill Mapper</div>
+          <div class="card-sub">Ikuti 3 langkah ini di Notion</div>
+        </div>
+      </div>
+      <ul class="steps-list">
+        <li>
+          <div class="step-num">1</div>
+          <div class="step-text">
+            <strong>Isi tabel inventaris skill</strong>
+            <span>Tulis SEMUA skill yang kamu punya — termasuk yang kamu anggap "biasa". Mengetik cepat, edit foto, bisa ngomong di depan umum, bisa bahasa Inggris — semua masuk.</span>
+          </div>
+        </li>
+        <li>
+          <div class="step-num">2</div>
+          <div class="step-text">
+            <strong>Cocokkan ke tabel peluang pasar</strong>
+            <span>Gunakan tabel referensi yang sudah tersedia. Cek skill mana yang punya nilai jual di pasar Indonesia sekarang.</span>
+          </div>
+        </li>
+        <li>
+          <div class="step-num">3</div>
+          <div class="step-text">
+            <strong>Pilih 1 skill dengan framework Suka + Bisa + Laku</strong>
+            <span>Skill terbaik untuk dimulai adalah yang kamu sukai, sudah cukup bisa, DAN ada yang mau bayar. Tulis di bagian "Skill Prioritas".</span>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="tip">
+      <div class="tip-icon">💡</div>
+      <p><strong>Rahasia pro:</strong> Skill yang paling laku sering bukan yang paling keren — tapi yang paling dibutuhkan UMKM lokal. Desain feed IG, edit video produk, atau nulis caption adalah skill yang permintaannya sangat besar di Indonesia.</p>
+    </div>
+
+    <div class="warn">
+      <div class="tip-icon">⚠️</div>
+      <p><strong>Jangan lanjut ke modul 2</strong> sebelum kamu menulis 1 skill prioritas di Notion. Ini fondasi dari segalanya.</p>
+    </div>
+
+    <div class="card">
+      <div class="card-title" style="margin-bottom:12px;">Checklist Modul 1</div>
+      <div class="checklist-item" onclick="toggleCheck(this)">
+        <div class="check-box"></div>
+        <div class="check-label">
+          <strong>Sudah buka halaman Skill Mapper di Notion</strong>
+          <span>Pastikan template sudah terduplikasi ke workspace-mu</span>
+        </div>
+      </div>
+      <div class="checklist-item" onclick="toggleCheck(this)">
+        <div class="check-box"></div>
+        <div class="check-label">
+          <strong>Sudah isi minimal 5 skill di tabel inventaris</strong>
+          <span>Lebih banyak lebih baik — jangan filter dulu</span>
+        </div>
+      </div>
+      <div class="checklist-item" onclick="toggleCheck(this)">
+        <div class="check-box"></div>
+        <div class="check-label">
+          <strong>Sudah tentukan 1 skill prioritas</strong>
+          <span>Tulis di bagian kesimpulan Skill Mapper</span>
+        </div>
+      </div>
+      <div class="checklist-item" onclick="toggleCheck(this)">
+        <div class="check-box"></div>
+        <div class="check-label">
+          <strong>Sudah riset harga pasaran skill tersebut</strong>
+          <span>Cek di Fiverr, Projects.co.id, atau grup Facebook freelancer</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="nav-buttons">
+      <button class="btn" onclick="prevStep()">← Kembali</button>
+      <button class="btn primary" onclick="nextStep()">Lanjut ke Roadmap →</button>
+    </div>
+  </div>
+
+  <!-- STEP 2: ROADMAP -->
+  <div class="step-content" id="step-2">
+    <div class="section-head">
+      <div class="section-tag">🛣️ Modul 2 · Action Roadmap</div>
+      <h2>12 minggu menuju<br>klien pertama</h2>
+      <p>Rencana konkret minggu per minggu. Bukan teori — ini aksi nyata yang harus dilakukan.</p>
+    </div>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot teal">1</div>
+        <div class="timeline-body">
+          <div class="timeline-week">Minggu 1–4 · Fase Persiapan</div>
+          <strong>Setup & bangun fondasi</strong>
+          <p>Buat portofolio sederhana (bisa pakai Notion atau Canva), setup profil di platform freelance, riset 10 calon klien potensial, dan buat 1 contoh karya gratis untuk portofolio.</p>
+          <div style="margin-top:8px">
+            <span class="badge teal">Portofolio</span>
+            <span class="badge teal" style="margin-left:4px">Riset</span>
+          </div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot amber">2</div>
+        <div class="timeline-body">
+          <div class="timeline-week">Minggu 5–8 · Fase Outreach</div>
+          <strong>Mulai hubungi calon klien</strong>
+          <p>Kirim DM atau pesan ke 3 calon klien per hari, follow up yang belum balas setelah 3 hari, minta referensi dari lingkaran terdekat, dan terus perbaiki pesan pitching-mu.</p>
+          <div style="margin-top:8px">
+            <span class="badge amber">Outreach</span>
+            <span class="badge amber" style="margin-left:4px">Pitching</span>
+          </div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot coral">3</div>
+        <div class="timeline-body">
+          <div class="timeline-week">Minggu 9–10 · Fase Closing</div>
+          <strong>Closing klien pertama</strong>
+          <p>Nego harga dengan percaya diri, kirim brief sederhana sebelum mulai kerja, minta DP 50% di awal, dan mulai kerjakan dengan standar terbaik.</p>
+          <div style="margin-top:8px">
+            <span class="badge coral">Nego</span>
+            <span class="badge coral" style="margin-left:4px">Closing</span>
+          </div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot green">4</div>
+        <div class="timeline-body">
+          <div class="timeline-week">Minggu 11–12 · Fase Scale</div>
+          <strong>Deliver & minta testimoni</strong>
+          <p>Selesaikan pekerjaan dengan baik, minta testimoni tertulis, tawaran revisi gratis 1x, lalu mulai cycle outreach lagi dengan portofolio yang lebih kuat.</p>
+          <div style="margin-top:8px">
+            <span class="badge green">Deliver</span>
+            <span class="badge green" style="margin-left:4px">Testimoni</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tip">
+      <div class="tip-icon">💡</div>
+      <p><strong>Minggu 1 yang paling penting:</strong> Jangan perfectionist soal portofolio. Portofolio "cukup baik" yang selesai lebih powerful dari portofolio "sempurna" yang tidak pernah jadi.</p>
+    </div>
+
+    <div class="nav-buttons">
+      <button class="btn" onclick="prevStep()">← Kembali</button>
+      <button class="btn primary" onclick="nextStep()">Lanjut ke Pipeline →</button>
+    </div>
+  </div>
+
+  <!-- STEP 3: CLIENT PIPELINE -->
+  <div class="step-content" id="step-3">
+    <div class="section-head">
+      <div class="section-tag">👥 Modul 3 · Client Pipeline</div>
+      <h2>Kelola klien<br>seperti profesional</h2>
+      <p>Jangan andalkan ingatan. Semua calon klien dan proyekmu harus terdokumentasi di sini.</p>
+    </div>
+
+    <div class="card">
+      <div class="card-head">
+        <div class="card-icon teal">📋</div>
+        <div>
+          <div class="card-title">5 kolom Kanban Board</div>
+          <div class="card-sub">Alur klien dari prospek sampai selesai</div>
+        </div>
+      </div>
+      <div style="display:flex; gap:6px; flex-wrap:wrap; margin-top:4px;">
+        <span class="badge teal">Prospek</span>
+        <span style="color:var(--muted); font-size:13px; align-self:center;">→</span>
+        <span class="badge amber">Dihubungi</span>
+        <span style="color:var(--muted); font-size:13px; align-self:center;">→</span>
+        <span class="badge coral">Negosiasi</span>
+        <span style="color:var(--muted); font-size:13px; align-self:center;">→</span>
+        <span class="badge green">Deal</span>
+        <span style="color:var(--muted); font-size:13px; align-self:center;">→</span>
+        <span class="badge teal">Selesai ✓</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title" style="margin-bottom:12px;">Template pesan outreach siap pakai</div>
+      <div class="accordion-item">
+        <div class="accordion-head" onclick="toggleAccordion(this)">
+          💬 DM Instagram (untuk UMKM)
+          <span class="accordion-arrow">▼</span>
+        </div>
+        <div class="accordion-body">
+          Halo Kak [nama]! 👋 Saya [nama kamu], seorang [jasa kamu]. Saya lihat bisnis Kak [nama bisnis] — keren banget produknya! Saya rasa saya bisa bantu [spesifik masalah, misal: bikin konten feed IG yang lebih menarik] supaya makin banyak yang tertarik beli. Boleh saya share contoh karya dulu? 🙏
+        </div>
+      </div>
+      <div class="accordion-item">
+        <div class="accordion-head" onclick="toggleAccordion(this)">
+          📱 Pesan WhatsApp (referral dari kenalan)
+          <span class="accordion-arrow">▼</span>
+        </div>
+        <div class="accordion-body">
+          Halo Kak [nama], saya [nama kamu] — dapat kontaknya dari [nama kenalan]. Saya lagi buka jasa [jenis jasa] untuk UMKM lokal. Lagi nyari klien pertama jadi harga masih sangat terjangkau. Kalau Kak ada butuh, boleh saya jelasin lebih lanjut? Nggak ada paksaan kok 😊
+        </div>
+      </div>
+      <div class="accordion-item">
+        <div class="accordion-head" onclick="toggleAccordion(this)">
+          📧 Email (untuk bisnis lebih formal)
+          <span class="accordion-arrow">▼</span>
+        </div>
+        <div class="accordion-body">
+          Subject: Kerjasama Jasa [Nama Jasa] untuk [Nama Bisnis]<br><br>
+          Halo Tim [Nama Bisnis],<br><br>
+          Perkenalkan saya [Nama], freelancer [bidang]. Saya tertarik untuk membantu [Nama Bisnis] dalam hal [spesifik]. Saya telah membantu beberapa bisnis serupa dan hasilnya [tulis hasil konkret jika ada].<br><br>
+          Boleh saya kirimkan portofolio dan proposal singkat?<br><br>
+          Terima kasih, [Nama]
+        </div>
+      </div>
+    </div>
+
+    <div class="warn">
+      <div class="tip-icon">⚠️</div>
+      <p><strong>Aturan emas:</strong> Selalu masukkan setiap kontak ke Pipeline — bahkan yang belum dibalas. Data ini sangat berharga untuk evaluasi mingguanmu.</p>
+    </div>
+
+    <div class="nav-buttons">
+      <button class="btn" onclick="prevStep()">← Kembali</button>
+      <button class="btn primary" onclick="nextStep()">Lanjut ke Income Tracker →</button>
+    </div>
+  </div>
+
+  <!-- STEP 4: INCOME TRACKER -->
+  <div class="step-content" id="step-4">
+    <div class="section-head">
+      <div class="section-tag">💰 Modul 4 & 5 · Income + Project</div>
+      <h2>Pantau setiap rupiah<br>yang masuk</h2>
+      <p>Kamu tidak bisa manage yang tidak kamu ukur. Catat semua — sekecil apapun proyeknya.</p>
+    </div>
+
+    <div class="card">
+      <div class="card-head">
+        <div class="card-icon green">💵</div>
+        <div>
+          <div class="card-title">Income Tracker — cara pakai</div>
+          <div class="card-sub">Catat setiap transaksi masuk</div>
+        </div>
+      </div>
+      <ul class="steps-list">
+        <li>
+          <div class="step-num">1</div>
+          <div class="step-text">
+            <strong>Catat setiap pembayaran masuk</strong>
+            <span>Langsung catat begitu transfer masuk — jangan ditunda. Isi tanggal, nama klien, jenis pekerjaan, dan nominal.</span>
+          </div>
+        </li>
+        <li>
+          <div class="step-num">2</div>
+          <div class="step-text">
+            <strong>Set target bulanan yang realistis</strong>
+            <span>Bulan 1: target minimal Rp500.000. Naikkan 20% setiap bulan setelah konsisten tercapai.</span>
+          </div>
+        </li>
+        <li>
+          <div class="step-num">3</div>
+          <div class="step-text">
+            <strong>Analisis sumber terbesar</strong>
+            <span>Setiap akhir bulan, lihat klien atau jenis pekerjaan mana yang paling menghasilkan. Double down di sana.</span>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <div class="card-head">
+        <div class="card-icon coral">📂</div>
+        <div>
+          <div class="card-title">Project Manager — cara pakai</div>
+          <div class="card-sub">Deliver pekerjaan seperti profesional</div>
+        </div>
+      </div>
+      <div class="card-body" style="margin-bottom:12px;">
+        Setiap proyek yang masuk langsung buat halaman di Project Manager. Isi deadline, deliverable yang disepakati, dan progress-nya.
+      </div>
+      <div class="tip">
+        <div class="tip-icon">💡</div>
+        <p><strong>Pro tip:</strong> Kirim update progress ke klien minimal 2x per proyek — saat mulai dan saat 50% selesai. Klien yang merasa diperhatikan = klien yang mau repeat order dan kasih referensi.</p>
+      </div>
+    </div>
+
+    <div class="nav-buttons">
+      <button class="btn" onclick="prevStep()">← Kembali</button>
+      <button class="btn primary" onclick="nextStep()">Lanjut ke Review →</button>
+    </div>
+  </div>
+
+  <!-- STEP 5: WEEKLY REVIEW -->
+  <div class="step-content" id="step-5">
+    <div class="section-head">
+      <div class="section-tag">🔄 Modul 6 · Weekly Review</div>
+      <h2>15 menit yang<br>mengubah segalanya</h2>
+      <p>Konsistensi dibangun dari review. Lakukan setiap Minggu malam — tanpa terkecuali.</p>
+    </div>
+
+    <div class="card">
+      <div class="card-title" style="margin-bottom:4px;">Template Review Mingguan</div>
+      <div class="card-sub" style="margin-bottom:14px;">Jawab 5 pertanyaan ini setiap Minggu malam</div>
+      <ul class="steps-list">
+        <li>
+          <div class="step-num">1</div>
+          <div class="step-text">
+            <strong>Apa 3 hal terbaik minggu ini?</strong>
+            <span>Rayakan progres sekecil apapun. Ini menjaga motivasi tetap tinggi.</span>
+          </div>
+        </li>
+        <li>
+          <div class="step-num">2</div>
+          <div class="step-text">
+            <strong>Apa yang tidak berjalan? Kenapa?</strong>
+            <span>Jujur dengan diri sendiri. Identifikasi hambatan — bukan alasan.</span>
+          </div>
+        </li>
+        <li>
+          <div class="step-num">3</div>
+          <div class="step-text">
+            <strong>Berapa klien yang dihubungi? Berapa yang balas?</strong>
+            <span>Track angka ini setiap minggu. Conversion rate rendah = perlu perbaiki pesan pitching.</span>
+          </div>
+        </li>
+        <li>
+          <div class="step-num">4</div>
+          <div class="step-text">
+            <strong>Berapa pemasukan minggu ini?</strong>
+            <span>Bahkan kalau 0, catat juga. Data ini penting untuk melihat tren pertumbuhan.</span>
+          </div>
+        </li>
+        <li>
+          <div class="step-num">5</div>
+          <div class="step-text">
+            <strong>1 fokus utama minggu depan</strong>
+            <span>Hanya satu. Bukan daftar panjang. Satu hal yang paling berdampak.</span>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <div class="card-title" style="margin-bottom:10px;">Streak tracker minggu ini</div>
+      <div class="card-sub" style="margin-bottom:12px;">Klik hari yang sudah kamu kerjakan side hustle-mu</div>
+      <div style="display:flex; justify-content:space-between; font-size:11px; color:var(--muted); margin-bottom:4px; font-weight:600; letter-spacing:0.5px;">
+        <span>SEN</span><span>SEL</span><span>RAB</span><span>KAM</span><span>JUM</span><span>SAB</span><span>MIN</span>
+      </div>
+      <div class="streak-grid">
+        <div class="streak-day done" onclick="toggleStreak(this)"></div>
+        <div class="streak-day done" onclick="toggleStreak(this)"></div>
+        <div class="streak-day done" onclick="toggleStreak(this)"></div>
+        <div class="streak-day done" onclick="toggleStreak(this)"></div>
+        <div class="streak-day today" onclick="toggleStreak(this)"></div>
+        <div class="streak-day" onclick="toggleStreak(this)"></div>
+        <div class="streak-day" onclick="toggleStreak(this)"></div>
+      </div>
+      <p style="font-size:12px; color:var(--muted); margin-top:8px;">🔥 4 hari streak — pertahankan!</p>
+    </div>
+
+    <div class="tip">
+      <div class="tip-icon">💡</div>
+      <p><strong>Reset bulanan:</strong> Setiap awal bulan, buat halaman Reset Bulanan baru. Evaluasi bulan lalu, set target bulan ini, dan mulai segar. Nggak ada rasa "gagal" — hanya iterasi.</p>
+    </div>
+
+    <div class="nav-buttons">
+      <button class="btn" onclick="prevStep()">← Kembali</button>
+      <button class="btn primary" onclick="nextStep()">Selesai Panduan! 🎉</button>
+    </div>
+  </div>
+
+  <!-- STEP 6: COMPLETION -->
+  <div class="step-content" id="step-6">
+    <div class="completion">
+      <div class="completion-icon">🎯</div>
+      <h2>Kamu siap untuk mulai!</h2>
+      <p>Panduan selesai. Sekarang kamu punya sistem yang lengkap. Yang tersisa hanya satu hal: <strong>ACTION.</strong></p>
+
+      <div class="reward-cards">
+        <div class="reward-card">
+          <div class="emoji">🗺️</div>
+          <strong>Skill Mapper</strong>
+          <span>Tahu skill apa yang mau dijual</span>
+        </div>
+        <div class="reward-card">
+          <div class="emoji">🛣️</div>
+          <strong>Roadmap 12W</strong>
+          <span>Rencana konkret minggu per minggu</span>
+        </div>
+        <div class="reward-card">
+          <div class="emoji">👥</div>
+          <strong>Client Pipeline</strong>
+          <span>Kelola klien seperti pro</span>
+        </div>
+        <div class="reward-card">
+          <div class="emoji">💰</div>
+          <strong>Income Tracker</strong>
+          <span>Pantau setiap rupiah masuk</span>
+        </div>
+      </div>
+
+      <div class="card" style="text-align:left; margin-bottom:20px;">
+        <div class="card-title" style="margin-bottom:8px;">🚀 Langkah pertamamu hari ini</div>
+        <div class="checklist-item" onclick="toggleCheck(this)" style="border-bottom:1px solid var(--border);">
+          <div class="check-box"></div>
+          <div class="check-label">
+            <strong>Buka Skill Mapper di Notion sekarang</strong>
+            <span>Jangan tunggu "nanti". Lakukan dalam 5 menit ke depan.</span>
+          </div>
+        </div>
+        <div class="checklist-item" onclick="toggleCheck(this)" style="border-bottom:1px solid var(--border);">
+          <div class="check-box"></div>
+          <div class="check-label">
+            <strong>Tulis minimal 5 skill yang kamu punya</strong>
+            <span>Gratis, cepat, dan langsung membuka mata kamu</span>
+          </div>
+        </div>
+        <div class="checklist-item" onclick="toggleCheck(this)">
+          <div class="check-box"></div>
+          <div class="check-label">
+            <strong>Set reminder setiap Minggu malam pukul 20.00</strong>
+            <span>Untuk sesi Weekly Review 15 menit</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tip">
+        <div class="tip-icon">🔥</div>
+        <p><strong>Ingat:</strong> Sistem terbaik adalah yang dijalankan — bukan yang hanya dibaca. Kamu sudah punya sistemnya. Sekarang tinggal satu langkah pertama.</p>
+      </div>
+
+      <button class="btn primary" style="width:100%; margin-top:8px;" onclick="goStep(0); resetProgress()">Mulai ulang panduan ↺</button>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  let currentStep = 0;
+  const totalSteps = 6;
+  const completed = new Set();
+
+  function goStep(n) {
+    document.querySelectorAll('.step-content').forEach(s => s.classList.remove('active'));
+    document.getElementById('step-' + n).classList.add('active');
+
+    document.querySelectorAll('.step-pill').forEach((p, i) => {
+      p.classList.remove('active');
+      if (completed.has(i)) p.classList.add('done');
+      else p.classList.remove('done');
+    });
+
+    document.getElementById('pill-' + n).classList.add('active');
+    document.getElementById('pill-' + n).classList.remove('done');
+    currentStep = n;
+    updateProgress();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function nextStep() {
+    completed.add(currentStep);
+    if (currentStep < totalSteps) goStep(currentStep + 1);
+  }
+
+  function prevStep() {
+    if (currentStep > 0) goStep(currentStep - 1);
+  }
+
+  function updateProgress() {
+    const pct = (completed.size / totalSteps) * 100;
+    document.getElementById('progress-fill').style.width = pct + '%';
+    document.getElementById('progress-label').textContent = completed.size + ' / ' + totalSteps + ' selesai';
+  }
+
+  function resetProgress() {
+    completed.clear();
+    updateProgress();
+  }
+
+  function toggleCheck(el) {
+    const box = el.querySelector('.check-box');
+    box.classList.toggle('checked');
+    el.classList.toggle('done');
+    if (box.classList.contains('checked')) box.textContent = '✓';
+    else box.textContent = '';
+  }
+
+  function toggleAccordion(head) {
+    const item = head.parentElement;
+    item.classList.toggle('open');
+  }
+
+  function toggleStreak(el) {
+    el.classList.toggle('done');
+    el.classList.remove('today');
+  }
+</script>
+</body>
+</html>
